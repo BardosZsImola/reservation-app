@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend of the Reservation management system",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "start": "node --require ts-node/register src/index.ts",
+    "build": "tsc --project ./",
+    "start_js": "node build/index.js",
+    "lint": "eslint . --ext .ts"
+  },
+  "author": "Bardos Imola",
+  "dependencies": {
+    "auto-bind": "^4.0.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/morgan": "^1.9.2",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}
