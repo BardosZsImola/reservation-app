@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createGlobalStyle } from 'styled-components';
 import App from './App';
-import { Provider } from "react-redux";
-import { store } from "./store";
-import { createGlobalStyle } from 'styled-components'
-import "normalize.css";
-import "@blueprintjs/core/lib/css/blueprint.css";
-import "@blueprintjs/icons/lib/css/blueprint-icons.css";
-import "@blueprintjs/datetime/lib/css/blueprint-datetime.css";
+import { store } from './store';
+import 'normalize.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import '@blueprintjs/icons/lib/css/blueprint-icons.css';
+import '@blueprintjs/datetime/lib/css/blueprint-datetime.css';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-`
+`;
 
 ReactDOM.render(
   <Provider store={store}>

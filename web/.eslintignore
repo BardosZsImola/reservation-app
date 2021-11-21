@@ -1,0 +1,11 @@
+node_modules/
+
+# build for react apps
+build/
+
+# ignore 3rd party libs possibly included
+**/bootstrap.*.js
+**/bootstrap.js
+
+*.css
+*.svg
