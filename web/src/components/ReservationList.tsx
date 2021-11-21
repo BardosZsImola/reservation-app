@@ -17,6 +17,13 @@ const Container = styled.div`
 const ReservationListItems = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
+`;
+
+const ErrorDiv = styled.div`
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
 `;
 
 interface PropsFromState {
@@ -37,7 +44,7 @@ const ReservationList: React.FC<AllProps> = ({ data, loading, error, getAllReser
   }, []);
 
   if (error) {
-    return <div>Something went wrong. Try again.</div>;
+    return <ErrorDiv>Something went wrong. Please try again.</ErrorDiv>;
   }
 
   return (

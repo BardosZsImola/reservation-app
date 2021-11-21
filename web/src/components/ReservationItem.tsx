@@ -3,11 +3,23 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { Alert, Button, Card, Elevation, Icon } from '@blueprintjs/core';
+import { Alert, Button, Card, Elevation, Icon, Intent } from '@blueprintjs/core';
 import { Reservation } from '../store/reservationList/types';
 import { removeReservation } from '../store/reservationList/action';
 import { history } from '../common/history';
 import { specialDateFormat } from '../common/dateService';
+
+const CardIcon = styled(Icon)`
+  float: right;
+  background-color: #9c27b0;
+  color: white;
+  padding: 15px;
+  margin-top: -30px;
+  border-color: #9c27b0;
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: 3px 3px #dddddc;
+`;
 
 const ReservationCard = styled(Card)`
   background-color: white;
@@ -22,13 +34,20 @@ const ProfileImg = styled.img`
   display: block;
 `;
 
-const ProductHeader = styled.h2``;
+const ReservationName = styled.h2`
+  padding-left: 10px;
+`;
+
+const ReservationIndex = styled(ReservationName)`
+  font-size: 20px;
+`;
 
 const ReservationInfo = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 5px;
+  padding-left: 5px;
 `;
 
 const InfoIcon = styled(Icon)`
@@ -73,9 +92,10 @@ const ReservationItem: React.FC<Props> = ({ item, index, deleteReservation }) =>
 
   return (
     <ReservationCard elevation={Elevation.TWO}>
-      <ProductHeader>reservation #{index}</ProductHeader>
+      <CardIcon icon="bookmark" size={30} />
+      <ReservationIndex>reservation #{index}</ReservationIndex>
       <ProfileImg src="no-face.jpg" />
-      <ProductHeader>{item.name}</ProductHeader>
+      <ReservationName>{item.name}</ReservationName>
       <ReservationInfo>
         <InfoIcon icon="people" />
         <span>Reservation for {item.numberOfGuests} people</span>
@@ -86,17 +106,23 @@ const ReservationItem: React.FC<Props> = ({ item, index, deleteReservation }) =>
       </ReservationInfo>
       <ReservationInfo>
         <InfoIcon icon="envelope" />
-        <span>{item.email}</span>
+        <span>{item.email !== '' ? item.email : 'no email'}</span>
       </ReservationInfo>
       <ButtonContainer>
-        <CardButton onClick={() => setIsAlert(true)}>Delete</CardButton>
-        <CardButton onClick={() => editReservation()}>Edit</CardButton>
+        <CardButton style={{ backgroundColor: '#db3737' }} onClick={() => setIsAlert(true)}>
+          Delete
+        </CardButton>
+        <CardButton style={{ backgroundColor: '#f2c37e' }} onClick={() => editReservation()}>
+          Edit
+        </CardButton>
       </ButtonContainer>
       {isAlert && (
         <Alert
           isOpen={true}
           cancelButtonText="Cancel"
           confirmButtonText="Delete"
+          icon="trash"
+          intent={Intent.DANGER}
           onConfirm={confirmDeletion}
           onCancel={cancelDeletion}
         >

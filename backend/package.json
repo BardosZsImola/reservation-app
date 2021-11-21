@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend of the Reservation management system",
+  "description": "Backend of the Reservation management project",
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",

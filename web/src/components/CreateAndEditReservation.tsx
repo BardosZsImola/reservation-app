@@ -9,6 +9,7 @@ import { Reservation } from '../store/reservationList/types';
 import { addNewReservation, editReservation } from '../store/reservationList/action';
 import { findReservationById } from '../apiRequests/reservation';
 import { getMomentFormatter, maxHour, minHour } from '../common/dateService';
+import { history } from '../common/history';
 
 const FormContainer = styled.div`
   display: flex;
@@ -21,11 +22,13 @@ const FormCard = styled(Card)`
 `;
 
 const ErrorLabel = styled(Label)`
-  color: red;
+  color: #db3737;
 `;
 
 const SubmitButton = styled(Button)<{ isUpdateMethod: boolean }>`
   text: ${(props) => (props.isUpdateMethod ? 'Edit' : 'Add')};
+  width: 20%;
+  font-weight: bold;
 `;
 
 const initialReservationState: Reservation = {
@@ -133,11 +136,13 @@ const CreateAndEditReservation: React.FC<Props> = ({ createNewReservation, updat
   const addNewReservation = (e: React.FormEvent) => {
     e.preventDefault();
     createNewReservation(reservation);
+    history.push('/');
   };
 
   const editReservation = (e: React.FormEvent) => {
     e.preventDefault();
     updateReservation(reservation);
+    history.push('/');
   };
 
   return (
@@ -191,6 +196,7 @@ const CreateAndEditReservation: React.FC<Props> = ({ createNewReservation, updat
           <ErrorLabel>{fieldErrors.email}</ErrorLabel>
         </FormGroup>
         <SubmitButton
+          style={{ backgroundColor: '#f2c37e' }}
           isUpdateMethod
           disabled={
             fieldErrors.name !== '' ||
